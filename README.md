@@ -1,2 +1,2 @@
 # TurvaKamera
-Turvakamera systeemi, käyttäen Raspberry Pi:tä ja äänentunnistus sensoria. Kirjoitettu pythonilla. Tiedot tallennettu kuva ja teksti tiedostona. 
+Turvakamera systeemi, käyttäen Raspberry Pi:tä ja äänentunnistus sensoria. Kirjoitettu pythonilla. Käytetty Bluetooth-laitteen tunnistusta. Tiedot tallennettu kuva ja teksti tiedostona. 
