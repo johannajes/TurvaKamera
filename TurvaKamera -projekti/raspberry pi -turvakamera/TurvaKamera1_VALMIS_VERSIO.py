@@ -19,7 +19,7 @@ def TurvaKamera():
 		cv2.imwrite("/home/pi/Kuvat/"+str(date)+".jpg", image)
 	date= datetime.fromtimestamp(time.time())
 	f=open("/home/pi/Asiakirjat/TurvaKamera/"+str(date)+".txt","w")
-	f.write(str(date)+(".jpg	Ääni tunnistettu. Kuva otettu!"))
+	f.write(str(date)+(".jpg	Ääni tunnistettu. Kuva otettu!"))	#tiedosto nimetään ajan mukaan, jottei se kirjoita edellisten tiedostojen päälle
 	f.close								# Lisätään tiedostoon, koska kuvia on otettu
 	print(date)
 def main():
@@ -27,18 +27,18 @@ def main():
 	target_address = None
 	while True:
 		nearby_devices=bluetooth.discover_devices()	
-		for bdaddr in nearby_devices:	# Tarkistetaan, onko omistaja jo kotona
+		for bdaddr in nearby_devices:			# Tarkistetaan, onko omistaja kotona
 			if target_name == bluetooth.lookup_name( bdaddr ):
 				target_address = bdaddr
 				break
 		if target_address is not None:
 			print("Puhelin tunnistettu. Sammutetaan turvakamera.")
 			break
-		elif GPIO.input(channel):		# Kuuntelee ääntä
+		elif GPIO.input(channel):			# Kuuntelee ääntä
 			print("Sound Detected!")
-			TurvaKamera()				# Käynnistää turvakameran
-GPIO.add_event_detect(channel, GPIO.BOTH, bouncetime=300)  # Kertoo onko pin HIGH vai LOW
-GPIO.add_event_callback(channel, main)  # asetetaan functio GPIO PIN:lle, ajaa function sen muuttuessa
+			TurvaKamera()				# Käynnistää turvakameran funktio kutsulla
+GPIO.add_event_detect(channel, GPIO.BOTH, bouncetime=300)  	# Kertoo onko pin HIGH vai LOW
+GPIO.add_event_callback(channel, main)  			# asetetaan functio GPIO PIN:lle, ajaa function sen muuttuessa
 if __name__=='__main__':
 	main()
 
